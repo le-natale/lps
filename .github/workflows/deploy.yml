@@ -1,16 +1,16 @@
-name: Produção - Publicar LP na VPS
+name: Produção - Pousada Villa Monte Verde
 
 on:
   push:
     branches:
       - main
     paths:
-      - "site/**"
+      - "sites/pousada-villa-monte-verde/**"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 concurrency:
-  group: deploy-lps-producao
+  group: pousada-villa-monte-verde-producao
   cancel-in-progress: true
 
 permissions:
@@ -38,12 +38,26 @@ jobs:
           printf '%s\n' "$VPS_HOST_KEY" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
+      - name: Validar arquivos e secrets
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST_KEY: ${{ secrets.VPS_HOST_KEY }}
+        run: |
+          test -f sites/pousada-villa-monte-verde/index.html
+          test -f sites/pousada-villa-monte-verde/logo-villa-monte-verde-dourado.png
+          test -n "$VPS_HOST"
+          test -n "$VPS_USER"
+          test -n "$VPS_SSH_KEY"
+          test -n "$VPS_HOST_KEY"
+
       - name: Publicar arquivos
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         run: |
-          tar -C site -czf - . |
+          tar -C sites/pousada-villa-monte-verde -czf - . |
           ssh \
             -i ~/.ssh/deploy_key \
             -o BatchMode=yes \
@@ -54,20 +68,19 @@ jobs:
       - name: Testar página publicada
         run: |
           for attempt in 1 2 3 4 5; do
-            status="$(curl \
+            if curl \
+              --fail \
               --silent \
-              --output /dev/null \
-              --write-out '%{http_code}' \
-              https://lps.pousadavillamonteverde.com.br/)"
-
-            if [ "$status" = "200" ]; then
-              echo "Deploy confirmado: HTTP 200"
+              --show-error \
+              "https://lps.pousadavillamonteverde.com.br/?deploy=${GITHUB_SHA}" |
+              grep --fixed-strings --quiet "xxakuvahbt"; then
+              echo "Produção confirmada"
               exit 0
             fi
 
-            echo "Tentativa $attempt: HTTP $status"
+            echo "Tentativa $attempt sem confirmação"
             sleep 5
           done
 
-          echo "Erro: o site não retornou HTTP 200"
+          echo "Erro: a produção não contém a versão esperada"
           exit 1
