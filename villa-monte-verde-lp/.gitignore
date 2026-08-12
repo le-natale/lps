@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.next-build/
+.next-verify/
+build-verify/
+out/
+.env*
+!.env.example
+npm-debug.log*
+.impeccable/
+backups/
+entrega/

@@ -1,0 +1,73 @@
+name: Produção - Publicar LP na VPS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-lps-producao
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Atualizar container lps-manutencao
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST_KEY: ${{ secrets.VPS_HOST_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$VPS_HOST_KEY" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Publicar arquivos
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          tar -C site -czf - . |
+          ssh \
+            -i ~/.ssh/deploy_key \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            "$VPS_USER@$VPS_HOST" \
+            'docker exec -i lps-manutencao tar -xzf - -C /usr/share/nginx/html'
+
+      - name: Testar página publicada
+        run: |
+          for attempt in 1 2 3 4 5; do
+            status="$(curl \
+              --silent \
+              --output /dev/null \
+              --write-out '%{http_code}' \
+              https://lps.pousadavillamonteverde.com.br/)"
+
+            if [ "$status" = "200" ]; then
+              echo "Deploy confirmado: HTTP 200"
+              exit 0
+            fi
+
+            echo "Tentativa $attempt: HTTP $status"
+            sleep 5
+          done
+
+          echo "Erro: o site não retornou HTTP 200"
+          exit 1
