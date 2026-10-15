@@ -59,8 +59,8 @@ export default function Home() {
       <section className="hero" id="inicio">
         <Image
           className="hero-image"
-          src="/images/hero-casal.webp"
-          alt="Casal brindando em uma acomodação romântica da Villa Monte Verde"
+          src="/images/hero-casamento.webp"
+          alt="Noivos brindando em uma acomodação decorada para casamento"
           fill
           priority
           unoptimized
