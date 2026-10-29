@@ -61,7 +61,7 @@ jobs:
               --silent \
               --show-error \
               "https://fluxianexus.com.br/lp/pousada-villa-monte-verde/?deploy=${GITHUB_SHA}" |
-              grep --fixed-strings --quiet "xxakuvahbt"; then
+              grep --fixed-strings --quiet "y1b625a3mx"; then
               echo "Homologação confirmada"
               exit 0
             fi

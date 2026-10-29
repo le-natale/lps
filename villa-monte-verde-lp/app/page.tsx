@@ -1,12 +1,11 @@
 import Image from "next/image";
+import Script from "next/script";
 import {
   ArrowDown,
-  Bath,
-  Clock3,
-  Flame,
+  House,
+  Trees,
   MapPin,
   Mountain,
-  Star,
   Utensils,
 } from "lucide-react";
 import { ChatCta, WhatsAppCta } from "./conversion-cta";
@@ -19,19 +18,19 @@ const trustItems = [
 
 const details = [
   {
-    icon: Flame,
-    title: "O que aquece de verdade",
-    text: "Lareira e ambientes preparados para os dias frios da serra.",
+    icon: Trees,
+    title: "Jardim com deck",
+    text: "Um espaço ao ar livre para a cerimônia, com vista para as montanhas.",
   },
   {
-    icon: Bath,
-    title: "Aqui, o tempo para.",
-    text: "Hidro e banheiras pensadas para relaxar e aproveitar a dois.",
+    icon: House,
+    title: "Restaurante La Bella Vista",
+    text: "Com teto de vidro, recebe a festa ou a cerimônia em caso de chuva.",
   },
   {
     icon: Utensils,
-    title: "Sabores da montanha",
-    text: "Café da manhã completo e uma experiência gastronômica no local.",
+    title: "Salão do café da manhã",
+    text: "Um ambiente para o jantar, a mesa de bolo e a recepção dos convidados.",
   },
 ];
 
@@ -51,7 +50,7 @@ export default function Home() {
 
         <nav aria-label="Navegação principal">
           <a href="#experiencia">A experiência</a>
-          <a href="#acomodacoes">Acomodações</a>
+          <a href="#acomodacoes">Os espaços</a>
           <a href="#localizacao">Localização</a>
         </nav>
       </header>
@@ -74,17 +73,17 @@ export default function Home() {
             Monte Verde, Minas Gerais
           </p>
           <h1>
-            Para quem vive o momento
-            <span> em cada detalhe.</span>
+            Para quem sonha celebrar
+            <span> o amor em cada detalhe.</span>
           </h1>
           <p className="hero-copy">
-            Chalés com lareira e hidro, sabores da montanha e um cuidado que
-            começa antes de vocês chegarem.
+            Celebrem seu casamento cercados pelas montanhas de Monte Verde e
+            por quem faz parte da história de vocês.
           </p>
           <div className="hero-actions">
-            <ChatCta label="Quero essa experiência" source="hero" />
-            <a className="text-link light hero-link" href="#experiencia">
-              Conhecer a Villa
+            <ChatCta label="Planejar meu casamento" source="hero" />
+            <a className="text-link light hero-link" href="#acomodacoes">
+              Conhecer os espaços
               <ArrowDown aria-hidden="true" size={17} />
             </a>
           </div>
@@ -108,33 +107,31 @@ export default function Home() {
 
       <section className="care-section" id="experiencia">
         <div className="section-heading">
-          <p className="kicker" data-reveal="up">Antes mesmo do check-in</p>
-          <h2 data-reveal="up">O cuidado começa em cada gesto.</h2>
+          <p className="kicker" data-reveal="up">Uma celebração para viver por inteiro</p>
+          <h2 data-reveal="up">Mais que um dia. Uma história para celebrar.</h2>
           <p data-reveal="up">
-            A experiência não começa na porta do chalé. Ela começa na conversa,
-            nos detalhes e no jeito como tudo é preparado para receber vocês.
+            Um lugar para reunir família e amigos, compartilhar a expectativa dos preparativos e aproveitar juntos os momentos que vêm depois do “sim”.
           </p>
         </div>
 
         <div className="wine-feature" data-reveal="up">
           <Image
-            src="/images/restaurant-wide/restaurante-wide-salao-coracao.jpg"
-            alt="Salão principal amplo iluminado por luzes quentes e preparado para um jantar romântico"
+            src="/images/casamentos/cerimonia-dourada-montanhas.webp"
+            alt="Casal celebrando o casamento sob um arco de flores com vista para as montanhas"
             fill
             loading="eager"
             sizes="(max-width: 700px) 100vw, 86vw"
           />
           <div className="wine-feature-content">
             <div>
-              <p>O cuidado aparece em cada detalhe</p>
-              <h3>O cenário perfeito para uma noite inesquecível.</h3>
+              <p>Celebre na Pousada Villa Monte Verde</p>
+              <h3>O cenário perfeito<br />para um dia<br />inesquecível.</h3>
               <p>
-                A iluminação, o clima da serra e o cuidado em cada detalhe
-                transformam o jantar em uma experiência única.
+                Da cerimônia à festa, descubram espaços que dão vida ao casamento que vocês sempre sonharam.
               </p>
               <div className="wine-action">
                 <ChatCta
-                  label="Quero conhecer mais"
+                  label="Falar sobre meu casamento"
                   source="experiencia"
                   tone="gold"
                 />
@@ -147,31 +144,29 @@ export default function Home() {
           <article data-reveal="up">
             <div className="care-photo">
               <Image
-                src="/images/restaurant-wide/restaurante-wide-brinde-lareira.jpg"
-                alt="Casal brindando com taças de vinho diante da lareira"
+                src="/images/casamentos/casamento-beijo.webp"
+                alt="Casal se beijando diante das montanhas"
                 fill
                 sizes="(max-width: 700px) 82vw, 240px"
               />
             </div>
-            <h3>Um brinde a vocês</h3>
+            <h3>Uma história para comemorar</h3>
             <p>
-              Taças erguidas, lareira acesa e nenhuma pressa para a noite
-              terminar.
+              O começo de uma nova etapa, celebrado com alegria e cercado de momentos que merecem ser eternizados.
             </p>
           </article>
           <article data-reveal="up">
             <div className="care-photo">
               <Image
-                src="/images/restaurant-wide/restaurante-wide-carne-risoto-molho-v3.jpg"
-                alt="Carne fatiada com risoto cremoso recebendo molho servido à mesa"
+                src="/images/casamentos/cerimonia-romantica-montanhas.webp"
+                alt="Decoração de cerimônia ao pôr do sol com vista para as montanhas"
                 fill
                 sizes="(max-width: 700px) 82vw, 240px"
               />
             </div>
-            <h3>Sabores com um toque de excelência</h3>
+            <h3>Uma celebração com a cara de vocês</h3>
             <p>
-              Cada prato é preparado com cuidado e muito amor para tornar o
-              jantar ainda mais especial.
+              Dos espaços aos detalhes, cada escolha ajuda a contar a história que trouxe vocês até aqui.
             </p>
           </article>
         </div>
@@ -182,8 +177,8 @@ export default function Home() {
         <div className="escape-visual" data-reveal="left">
           <div className="photo photo-main">
             <Image
-              src="/images/banheira-cafe-vista.jpg"
-              alt="Banheira com pétalas, café da manhã e vista para a natureza"
+              src="/images/casamentos/casamento-votos-amplo.webp"
+              alt="Noivos celebrando juntos durante a cerimônia"
               fill
               sizes="(max-width: 900px) 100vw, 50vw"
             />
@@ -191,10 +186,9 @@ export default function Home() {
         </div>
 
         <div className="escape-copy">
-          <h2 data-reveal="up">Um mundo feito para vocês dois.</h2>
+          <h2 data-reveal="up">O momento de vocês, em um lugar especial.</h2>
           <p className="lead" data-reveal="up">
-            Na Villa Monte Verde, o frio fica do lado de fora. Por dentro, a
-            madeira, o fogo, a água quente e o silêncio tomam conta.
+            Para os votos, o jantar e a festa, três espaços acolhem a celebração que vocês imaginaram.
           </p>
 
           <div className="detail-list">
@@ -209,9 +203,11 @@ export default function Home() {
             ))}
           </div>
 
+          <p className="package-note">Buffet, jantar, bebidas, decoração e demais serviços são contratados à parte.</p>
+
           <div className="inline-action" data-reveal="up">
             <ChatCta
-              label="Quero essa experiência"
+              label="Planejar meu casamento"
               source="acomodacoes"
               tone="wood"
             />
@@ -221,42 +217,47 @@ export default function Home() {
 
       <section className="moments-section">
         <div className="moments-heading" data-reveal="up">
-          <h2>O tempo muda de ritmo por aqui.</h2>
+          <h2>Cada momento merece ser lembrado.</h2>
         </div>
 
-        <div className="moments-grid">
+        <div className="moments-grid two-wedding-videos">
           <figure className="moment moment-tall" data-reveal="up">
             <Image
               src="/images/acomodacao-banheira.jpg"
-              alt="Acomodação com banheira de imersão e vista panorâmica"
+              alt=""
               fill
               sizes="(max-width: 800px) 100vw, 42vw"
             />
-            <figcaption>Privacidade para desacelerar</figcaption>
+            <video className="wedding-video" controls muted playsInline preload="metadata" aria-label="Vídeo de casamento na Pousada Villa Monte Verde"><source src="/videos/top-video.mp4" type="video/mp4" /></video>
+            <figcaption>A emoção do grande dia</figcaption>
+          </figure>
+          <figure className="moment moment-tall moment-celebration" data-reveal="up">
+            <Image src="/images/casamentos/06116-poster.webp" alt="Noivos celebrando com convidados após a cerimônia" fill sizes="(max-width: 700px) 100vw, 30vw" />
+            <video className="wedding-video" controls muted playsInline preload="metadata" poster="/images/casamentos/06116-poster.webp" aria-label="Vídeo da celebração de casamento"><source src="/videos/06116.mp4" type="video/mp4" /></video>
           </figure>
           <figure className="moment" data-reveal="up">
             <Image
-              src="/images/cafe-colonial.jpg"
-              alt="Mesa de café da manhã com frutas, pães e acompanhamentos"
+              src="/images/casamentos/casamento-convidados.webp"
+              alt="Cerimônia de casamento cercada por convidados"
               fill
               sizes="(max-width: 800px) 100vw, 28vw"
             />
-            <figcaption>Manhãs sem despertador</figcaption>
+            <figcaption>Uma celebração entre as montanhas</figcaption>
           </figure>
           <figure className="moment" data-reveal="up">
             <Image
-              src="/images/bistro-vista.jpg"
-              alt="Bistrô da pousada com vista para as montanhas"
+              src="/images/casamentos/recepcao-luzes-douradas.webp"
+              alt="Recepção de casamento com convidados sob luzes douradas"
               fill
               sizes="(max-width: 800px) 100vw, 28vw"
             />
-            <figcaption>Sabores com vista para a serra</figcaption>
+            <figcaption>A alegria de celebrar juntos</figcaption>
           </figure>
         </div>
 
         <div className="section-action" data-reveal="up">
           <ChatCta
-            label="Quero conhecer mais"
+            label="Falar sobre meu casamento"
             source="momentos"
             tone="wood"
           />
@@ -265,29 +266,22 @@ export default function Home() {
 
       <section className="proof-section">
         <div className="proof-meta" data-reveal="up">
-          <div className="stars" aria-label="Cinco estrelas">
-            {[0, 1, 2, 3, 4].map((star) => (
-              <Star key={star} aria-hidden="true" fill="currentColor" size={18} />
-            ))}
-          </div>
-          <p>Excelência TripAdvisor</p>
-          <span>11 anos cuidando de casais em Monte Verde</span>
+          <p>CASAMENTOS NA VILLA</p>
+          <span>Até <strong>100 pessoas</strong> na celebração</span>
+          <span>Hospedagem para até <strong>34 hóspedes</strong></span>
         </div>
 
         <blockquote data-reveal="up">
-          “Uma paz absurda, café da manhã excelente e atendimento impecável.
-          É o refúgio perfeito para esquecer o mundo a dois.”
-          <cite>— Hóspede da Villa Monte Verde</cite>
+          “Alguns dias merecem ser vividos com calma, cercados de amor e das pessoas que tornam a nossa história especial.”
+          <cite>— Pousada Villa Monte Verde</cite>
         </blockquote>
       </section>
 
       <section className="location-section" id="localizacao">
         <div className="location-copy">
-          <h2 data-reveal="up">No meio da natureza. A cinco minutos do centro.</h2>
+          <h2 data-reveal="up">Um momento de vocês. Uma alegria de todos.</h2>
           <p data-reveal="up">
-            São apenas 200 metros até o centro de Monte Verde. Vocês podem
-            aproveitar restaurantes, passeios e o vilarejo a pé — e voltar para
-            o sossego quando quiserem.
+            A Pousada Villa Monte Verde fica a apenas 200 metros do centro de Monte Verde, perto de restaurantes, lojas e passeios para aproveitar antes ou depois da celebração.
           </p>
 
           <div className="location-facts" data-reveal="up">
@@ -296,8 +290,8 @@ export default function Home() {
               200 metros do centro
             </span>
             <span>
-              <Clock3 aria-hidden="true" size={20} />
-              Aproximadamente 5 minutos a pé
+              <Mountain aria-hidden="true" size={20} />
+              Serra da Mantiqueira · Minas Gerais
             </span>
           </div>
 
@@ -305,8 +299,8 @@ export default function Home() {
 
         <div className="location-photo" data-reveal="right">
           <Image
-            src="/images/deck-montanhas.jpg"
-            alt="Deck da Villa Monte Verde cercado por árvores e vista para as montanhas"
+            src="/images/casamentos/saida-casamento-visao-ampla.webp"
+            alt="Recém-casados comemoram com convidados na saída da cerimônia"
             fill
             sizes="(max-width: 900px) 100vw, 48vw"
           />
@@ -316,9 +310,9 @@ export default function Home() {
       <section className="final-section">
         <div>
           <h2 data-reveal="up">
-            Apenas decidam vir.
+            Mal podemos esperar
             <br />
-            O resto, a Villa prepara.
+            para fazer parte dessa linda história.
           </h2>
         </div>
         <div data-reveal="up">
@@ -334,8 +328,9 @@ export default function Home() {
           height={100}
         />
         <p>Monte Verde · Minas Gerais</p>
-        <span>Um refúgio pensado para dois.</span>
+        <span>Casamentos na serra de Monte Verde.</span>
       </footer>
+      <Script src="/scripts/wedding-video-scroll.js" strategy="afterInteractive" />
     </main>
   );
 }

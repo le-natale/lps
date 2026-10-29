@@ -30,13 +30,13 @@ export function WhatsAppCta() {
   return (
     <a
       className="cta-button cta-button--whatsapp"
-      href="https://wa.me/5535997382399?text=Ol%25C3%25A1%252C%2520vim%2520pelo%2520Instagram%2520e%2520quero%2520saber%2520mais%2520informa%25C3%25A7%25C3%25B5es%21"
+      href="https://wa.me/5535997382399?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20casamentos%20na%20Pousada%20Villa%20Monte%20Verde."
       target="_blank"
       rel="noopener noreferrer"
       data-whatsapp-trigger
     >
       <MessageCircle aria-hidden="true" size={18} />
-      Reservar pelo WhatsApp
+      Conversar pelo WhatsApp
     </a>
   );
 }

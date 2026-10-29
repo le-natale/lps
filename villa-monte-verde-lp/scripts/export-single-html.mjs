@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const origin = "http://127.0.0.1:3000";
@@ -153,7 +153,7 @@ const portableClarityScript = `<script type="text/javascript">
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "xxakuvahbt");
+})(window, document, "clarity", "script", "y1b625a3mx");
 </script>`;
 
 const portableChatBridge = `<script>
@@ -175,6 +175,7 @@ const portableChatBridge = `<script>
       const style = document.createElement("style");
       style.id = "villa-mobile-chat-layout";
       style.textContent =
+        ".avatar { border-color: #38282a !important; }" +
         "@media (max-width: 700px) {" +
         ".launcher { display: none !important; }" +
         ".panel { inset: 0 !important; width: 100vw !important; max-width: 100vw !important; height: 100dvh !important; }" +
@@ -224,23 +225,25 @@ const portableChatBridge = `<script>
   data-slug="feb12c61644a11f1a7d136bbe7cca700"
   data-agent="reservas"
   data-theme="light"
-  data-color="#a85b00"
+  data-color="#38282a"
   data-background-color="#f3eee7"
   data-assistant-color="#ece4da"
-  data-user-color="#e59a08"
+  data-user-color="#f2cf8b"
   data-text-color="#271f18"
   data-logo-url="https://lps.pousadavillamonteverde.com.br/logo-villa-monte-verde-dourado.png"
   data-agent-icon="logo"
   data-agent-avatar-url="https://images3.motor-reserva.com.br/curl/storage/2910/202206021654181502logo.png"
   data-avatar="https://lps.pousadavillamonteverde.com.br/logo-villa-monte-verde-dourado.png"
-  data-greeting="Olá! Eu sou a FluxIA da Pousada Villa Monte Verde. Como posso ajudar com sua hospedagem?"
-  data-title="Viva essa experiência"
-  data-subtitle="Tire dúvidas e planeje sua estadia"
-  data-cta="Conversar agora"></script>`;
+  data-greeting="Olá! Eu sou a FluxIA da Pousada Villa Monte Verde. Como posso ajudar com seu casamento?"
+  data-title="Seu casamento na Villa"
+  data-subtitle="Tire dúvidas sobre seu casamento"
+  data-cta="Falar sobre casamento"></script>`;
+
+const portableVideoScript = `<script id="wedding-video-playback">${await readFile(path.join(process.cwd(), "public/scripts/wedding-video-scroll.js"), "utf8")}</script>`;
 
 html = html.replace(
   "</body>",
-  `${portableClarityScript}${portableRevealScript}${portableChatBridge}</body>`,
+  `${portableClarityScript}${portableRevealScript}${portableChatBridge}${portableVideoScript}</body>`,
 );
 
 await mkdir(outputDirectory, { recursive: true });

@@ -2,13 +2,13 @@
 
 :root {
   --forest: #563c2a;
-  --forest-deep: #2f241b;
+  --forest-deep: #38282a;
   --forest-ink: #25180e;
   --romance: #70492e;
   --romance-deep: #35251a;
-  --gold: #e59a08;
+  --gold: #c38f38;
   --gold-ink: #8a5900;
-  --gold-light: #ffc24a;
+  --gold-light: #f2cf8b;
   --off-white: #f3eee7;
   --mist: #ece4da;
   --ink: #271f18;
@@ -437,8 +437,8 @@ p {
 .wine-feature > img {
   z-index: -2;
   object-fit: cover;
-  object-position: center 48%;
-  filter: brightness(1.07) contrast(1.1) saturate(1.08);
+  object-position: center 58%;
+  filter: none;
   transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -471,7 +471,7 @@ p {
 }
 
 .wine-feature-content h3 {
-  max-width: 14ch;
+  max-width: 100%;
   font-size: clamp(2.15rem, 3.6vw, 3.65rem);
   line-height: 1.06;
   text-shadow: 0 2px 18px rgba(20, 5, 8, 0.28);
@@ -575,7 +575,8 @@ p {
 }
 
 .photo-main img {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 }
 
 .escape-copy {
@@ -1050,7 +1051,7 @@ footer span {
     width: 87px;
     height: 87px;
     padding: 3px;
-    border: 3px solid #a85b00;
+    border: 3px solid #563c2a;
     border-radius: 999px;
     background: #fff;
     box-shadow: 0 5px 12px rgba(47, 36, 27, 0.3);
@@ -1279,4 +1280,70 @@ footer span {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Preserve the portrait video frame and let the photos fill the remaining gallery width. */
+.moments-grid:has(.wedding-video) {
+  --video-row-height: max(250px, 30vw);
+  grid-template-columns: calc((var(--video-row-height) * 2 + 1rem) * 9 / 16) minmax(0, 1fr);
+  grid-template-rows: repeat(2, var(--video-row-height));
+  justify-content: start;
+}
+.moment > .wedding-video { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; background:#211a17; z-index:1; }
+@media (max-width: 700px) {
+  .moments-grid:has(.wedding-video) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto repeat(2, minmax(300px, 82vw));
+  }
+  .moment-tall:has(.wedding-video) { aspect-ratio: 9 / 16; min-height: 0; }
+}
+.moment-tall:has(.wedding-video) figcaption { top:1.25rem; bottom:auto; pointer-events:none; }
+
+
+
+/* Dois vídeos verticais, com imagens ao lado. */
+.moments-grid.two-wedding-videos:has(.wedding-video) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.moments-grid.two-wedding-videos .moment-tall { aspect-ratio: 9 / 16; min-height: 0; }
+@media (max-width: 700px) {
+  .moments-grid.two-wedding-videos:has(.wedding-video) { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; grid-auto-rows: auto; }
+  .moments-grid.two-wedding-videos .moment-tall { grid-row: auto; }
+  .moments-grid.two-wedding-videos .moment:not(.moment-tall) { min-height: max(300px, 82vw); }
+}
+
+/* Alinha a foto à margem dos demais blocos. */
+.escape-visual .photo-main { inset-inline-start: clamp(1.25rem, 7vw, 8rem); }
+@media (max-width: 980px) { .escape-visual .photo-main { inset-inline-end: clamp(1.25rem, 7vw, 8rem); } }
+
+/* Destaques do pacote de casamento */
+.proof-meta { max-width: 24rem; }
+.proof-meta p { margin: 0 0 1.5rem; color: var(--gold-light); font-size: 0.9rem; letter-spacing: 0.1em; line-height: 1.4; }
+.proof-meta span { display: block; max-width: none; padding: 1rem 0; border-top: 1px solid rgba(255, 255, 255, 0.22); color: rgba(255, 255, 255, 0.9); font-size: clamp(1rem, 1.1vw, 1.15rem); line-height: 1.5; }
+.proof-meta span strong { color: var(--gold-light); font-weight: 800; }
+/* Botões em tons quentes da paleta de casamento. */
+.cta-button--gold:hover, .cta-button--whatsapp:hover { background: #eac28a; color: var(--forest-ink); }
+
+/* Paleta uniforme para os botões da página de casamentos. */
+.cta-button--gold, .cta-button--wood, .cta-button--whatsapp {
+  background: var(--forest);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+.cta-button--gold:hover, .cta-button--wood:hover, .cta-button--whatsapp:hover {
+  background: var(--forest-deep);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+/* Mesmo dourado nos textos dos botões e no contorno do chat. */
+.cta-button--gold, .cta-button--wood, .cta-button--whatsapp,
+.cta-button--gold:hover, .cta-button--wood:hover, .cta-button--whatsapp:hover { color: #f2cf8b; }
+.mobile-chat-launcher { border-color: #c38f38; }
+/* Cor de referência do hero nos botões e no contorno do chat. */
+.cta-button--gold, .cta-button--wood, .cta-button--whatsapp { background: #38282a; border-color: #38282a; color: #f2cf8b; }
+.cta-button--gold:hover, .cta-button--wood:hover, .cta-button--whatsapp:hover { background: #563c2a; border-color: #f2cf8b; color: #f2cf8b; }
+.mobile-chat-launcher { border-color: #38282a; }
+/* Ajustes finais: chamada visível, condições e leitura no celular. */
+.final-section .cta-button--whatsapp { border-color: #f2cf8b; }
+.package-note { margin-top: 1.5rem; color: var(--muted); font-size: 0.88rem; line-height: 1.55; }
+@media (max-width: 700px) {
+  .hero-location { color: #fff; background: rgba(37, 24, 14, 0.78); border-radius: 3px; padding: 0.35rem 0.5rem; text-shadow: none; }
 }
