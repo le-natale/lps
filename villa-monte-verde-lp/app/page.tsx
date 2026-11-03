@@ -111,7 +111,7 @@ export default function Home() {
 
         <div className="wine-feature" data-reveal="up">
           <Image
-            src="/images/casamentos/cerimonia-celebrante-corrigido.png"
+            src="/images/casamentos/cerimonia-noiva-olhando-noivo.png"
             alt="Casal celebrando o casamento sob um arco de flores com vista para as montanhas"
             fill
             loading="eager"

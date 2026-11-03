@@ -1347,3 +1347,17 @@ footer span {
 @media (max-width: 700px) {
   .hero-location { color: #fff; background: rgba(37, 24, 14, 0.78); border-radius: 3px; padding: 0.35rem 0.5rem; text-shadow: none; }
 }
+
+/* Preserve the complete ceremony image in the feature block. */
+.wine-feature { width: min(100%, 1400px); margin-left: auto; margin-right: auto; aspect-ratio: 1670 / 941; min-height: 0; }
+.wine-feature > img { object-fit: contain; object-position: center; }
+.wine-feature:hover > img { transform: none; }
+@media (max-width: 800px) {
+  .wine-feature { display: flex; flex-direction: column; aspect-ratio: auto; }
+  .wine-feature::after { display: none; }
+  .wine-feature > img { position: relative !important; width: 100% !important; height: auto !important; aspect-ratio: 1670 / 941; }
+  .wine-feature-content { position: relative; inset: auto; background: #38282a; }
+  .wine-feature-content > div { position: static; transform: none; max-width: none; padding: 2rem 1.5rem; }
+  .wine-feature-content > div > p:last-of-type { position: static; margin-top: 1.35rem; }
+  .wine-feature-content .wine-action { position: static; margin-top: 1.5rem; }
+}
