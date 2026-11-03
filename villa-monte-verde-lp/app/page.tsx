@@ -357,7 +357,8 @@ export default function Home() {
 
         <div className="location-photo" data-reveal="right">
           <Image
-            src="/images/casamentos/saida-casamento-visao-ampla.webp"
+            src="/images/casamentos/saida-casamento-video-fullhd.webp"
+            style={{ objectPosition: "35% center" }}
             alt="Recém-casados comemoram com convidados na saída da cerimônia"
             fill
             sizes="(max-width: 900px) 100vw, 48vw"
