@@ -2,6 +2,7 @@ import Image from "next/image";
 import Script from "next/script";
 import {
   ArrowDown,
+  ArrowUpRight,
   House,
   Trees,
   MapPin,
@@ -34,6 +35,30 @@ const details = [
   },
 ];
 
+const chalets = [
+  {
+    key: "prime",
+    title: "Chalé Prime",
+    image: "/images/chales/chale-prime.png",
+    alt: "Interior do Chalé Prime com cama, poltronas e hidromassagem",
+    description: "Decoração rústica, hidromassagem dupla e lareira."
+  },
+  {
+    key: "elegance",
+    title: "Chalé Elegance",
+    image: "/images/acomodacao-lareira.jpg",
+    alt: "Interior do Chalé Elegance com cama e banheira de imersão",
+    description: "Banheira de imersão e lareira, com detalhes rústicos e modernos."
+  },
+  {
+    key: "piscina",
+    title: "Chalé Superior com Piscina",
+    image: "/images/banheira-cafe-vista.jpg",
+    alt: "Piscina privativa do Chalé Superior, junto à varanda",
+    description: "Piscina aquecida privativa dentro do chalé e lareira."
+  }
+];
+
 export default function Home() {
   return (
     <main>
@@ -51,6 +76,7 @@ export default function Home() {
         <nav aria-label="Navegação principal">
           <a href="#experiencia">A experiência</a>
           <a href="#acomodacoes">Os espaços</a>
+          <a href="#chales">Chalés</a>
           <a href="#localizacao">Localização</a>
         </nav>
       </header>
@@ -207,6 +233,43 @@ export default function Home() {
               tone="wood"
             />
           </div>
+        </div>
+      </section>
+
+      <section className="care-section chalets-section" id="chales" aria-labelledby="chales-titulo">
+        <div className="section-heading">
+          <h2 id="chales-titulo">Os chalés da Villa</h2>
+          <p>O pacote inclui 14 acomodações para até 34 hóspedes, de sexta a domingo. Conheçam três dos chalés da Villa para aproveitar o fim de semana do casamento.</p>
+        </div>
+
+        <div className="chalet-grid">
+          {chalets.map((chalet) => (
+            <article key={chalet.key}>
+              <div className={"chalet-photo chalet-photo--" + chalet.key}>
+                <Image
+                  src={chalet.image}
+                  alt={chalet.alt}
+                  fill
+                  sizes="(max-width: 720px) 100vw, 29vw"
+                />
+              </div>
+              <h3>{chalet.title}</h3>
+              <p>{chalet.description}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="section-action">
+          <a
+            className="cta-button cta-button--wood"
+            href="https://pousadavillamonteverde.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver todas as acomodações (abre em nova aba)"
+          >
+            Ver todas as acomodações
+            <ArrowUpRight aria-hidden="true" size={17} />
+          </a>
         </div>
       </section>
 
