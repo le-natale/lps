@@ -1347,3 +1347,9 @@ footer span {
 @media (max-width: 700px) {
   .hero-location { color: #fff; background: rgba(37, 24, 14, 0.78); border-radius: 3px; padding: 0.35rem 0.5rem; text-shadow: none; }
 }
+/* More of the ceremony remains visible within the aligned page width. */
+@media (min-width: 801px) {
+  .wine-feature { width: 100%; aspect-ratio: 1670 / 941; min-height: 440px; max-height: 780px; }
+  .wine-feature > img { object-position: center; }
+  .wine-feature:hover > img { transform: none; }
+}
