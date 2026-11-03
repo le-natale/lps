@@ -53,8 +53,8 @@ const chalets = [
   {
     key: "piscina",
     title: "Chalé Superior com Piscina",
-    image: "/images/banheira-cafe-vista.jpg",
-    alt: "Piscina privativa do Chalé Superior, junto à varanda",
+    image: "/images/chales/chale-superior-piscina.jpg",
+    alt: "Interior do Chalé Superior com cama, piscina privativa e varanda",
     description: "Piscina aquecida privativa dentro do chalé e lareira."
   }
 ];
