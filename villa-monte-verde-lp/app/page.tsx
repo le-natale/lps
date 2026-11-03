@@ -89,11 +89,6 @@ export default function Home() {
           </div>
         </div>
 
-        <p className="hero-note">
-          A poucos passos do centro.
-          <br />
-          Perto de tudo, longe da pressa.
-        </p>
       </section>
 
       <section className="trust-strip" aria-label="Destaques da pousada">
@@ -246,7 +241,7 @@ export default function Home() {
           </figure>
           <figure className="moment" data-reveal="up">
             <Image
-              src="/images/casamentos/recepcao-luzes-douradas.webp"
+              src="/images/casamentos/festa-luzes-douradas.png"
               alt="Recepção de casamento com convidados sob luzes douradas"
               fill
               sizes="(max-width: 800px) 100vw, 28vw"
