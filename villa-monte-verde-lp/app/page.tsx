@@ -46,7 +46,7 @@ const chalets = [
   {
     key: "elegance",
     title: "Chalé Elegance",
-    image: "/images/acomodacao-lareira.jpg",
+    image: "/images/chales/chale-elegance.jpg",
     alt: "Interior do Chalé Elegance com cama e banheira de imersão",
     description: "Banheira de imersão e lareira, com detalhes rústicos e modernos."
   },
