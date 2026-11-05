@@ -36,7 +36,17 @@ jobs:
               certificate = ftp.sock.getpeercert()
               print('Cadeia do certificado validada:', bool(certificate))
               names = [value.lower().rstrip('.') for kind, value in certificate.get('subjectAltName', ()) if kind == 'DNS']
+              def covers(domain):
+                  return any(name == domain or (name.startswith('*.') and domain.endswith(name[1:]) and domain.count('.') == name.count('.')) for name in names)
               for domain in ('ftp.fluxianexus.com.br', 'fluxianexus.com.br'):
-                  matched = any(name == domain or (name.startswith('*.') and domain.endswith(name[1:]) and domain.count('.') == name.count('.')) for name in names)
-                  print('Certificado cobre', domain + ':', matched)
+                  print('Certificado cobre', domain + ':', covers(domain))
+              verified_ptr = False
+              for ip in ips:
+                  try:
+                      reverse = socket.gethostbyaddr(ip)[0].lower().rstrip('.')
+                      forward = {row[4][0] for row in socket.getaddrinfo(reverse, port)}
+                      verified_ptr |= ip in forward and covers(reverse)
+                  except OSError:
+                      pass
+              print('DNS reverso e direto confirmam nome do certificado:', verified_ptr)
           PY
