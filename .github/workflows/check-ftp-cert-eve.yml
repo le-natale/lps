@@ -49,4 +49,7 @@ jobs:
                   except OSError:
                       pass
               print('DNS reverso e direto confirmam nome do certificado:', verified_ptr)
+              canonical = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM, flags=socket.AI_CANONNAME)[0][3].lower().rstrip('.')
+              print('Alias DNS existe:', bool(canonical) and canonical != host.lower().rstrip('.'))
+              print('Alias DNS corresponde ao certificado:', bool(canonical) and covers(canonical))
           PY
