@@ -1,0 +1,25 @@
+name: Publicar apenas o chat de casamentos
+
+on:
+  push:
+    branches:
+      - codex/chat-homologacao-eve
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar preservação dos arquivos
+        run: python3 .github/scripts/test-deploy-chat-eve.py
+      - name: Publicar somente a página do chat
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: python3 .github/scripts/deploy-chat-eve.py
