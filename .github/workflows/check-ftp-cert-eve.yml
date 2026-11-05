@@ -35,11 +35,8 @@ jobs:
               ftp.auth()
               certificate = ftp.sock.getpeercert()
               print('Cadeia do certificado validada:', bool(certificate))
+              names = [value.lower().rstrip('.') for kind, value in certificate.get('subjectAltName', ()) if kind == 'DNS']
               for domain in ('ftp.fluxianexus.com.br', 'fluxianexus.com.br'):
-                  try:
-                      ssl.match_hostname(certificate, domain)
-                      matched = True
-                  except ssl.CertificateError:
-                      matched = False
+                  matched = any(name == domain or (name.startswith('*.') and domain.endswith(name[1:]) and domain.count('.') == name.count('.')) for name in names)
                   print('Certificado cobre', domain + ':', matched)
           PY
