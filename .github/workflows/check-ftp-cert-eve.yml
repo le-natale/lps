@@ -1,0 +1,45 @@
+name: Verificar certificado FTP sem credenciais
+
+on:
+  push:
+    branches:
+      - codex/diagnostico-ftp-eve
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Conferir identidade pública do servidor
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+        run: |
+          python3 - <<'PY'
+          from ftplib import FTP_TLS
+          import os
+          import socket
+          import ssl
+
+          host = os.environ['FTP_SERVER']
+          port = int(os.environ['FTP_PORT'])
+          ips = {row[4][0] for row in socket.getaddrinfo(host, port)}
+          print('Servidor FTP é a VPS conhecida:', '69.62.69.53' in ips)
+          context = ssl.create_default_context()
+          context.check_hostname = False
+          with FTP_TLS(context=context, timeout=20) as ftp:
+              ftp.connect(host, port)
+              ftp.auth()
+              certificate = ftp.sock.getpeercert()
+              print('Cadeia do certificado validada:', bool(certificate))
+              for domain in ('ftp.fluxianexus.com.br', 'fluxianexus.com.br'):
+                  try:
+                      ssl.match_hostname(certificate, domain)
+                      matched = True
+                  except ssl.CertificateError:
+                      matched = False
+                  print('Certificado cobre', domain + ':', matched)
+          PY
