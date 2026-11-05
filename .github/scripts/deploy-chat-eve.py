@@ -84,6 +84,9 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    except ssl.SSLCertVerificationError as exc:
+        print("Certificado FTP recusado; código de verificação:", exc.verify_code, file=sys.stderr)
+        sys.exit(1)
     except Exception as exc:
         print("Falha na publicação:", type(exc).__name__, file=sys.stderr)
         sys.exit(1)
